@@ -9,11 +9,7 @@ import routes from './routes/index';
 const history = createBrowserHistory();
 const store = configureStore();
 
-import './style.scss';
-
-console.log('history', history);
-console.log('store', store);
-console.log('routes', routes);
+//import './styles/index.scss';
 
 
 ReactDOM.render(

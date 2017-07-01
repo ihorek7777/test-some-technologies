@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Alert, ButtonToolbar, DropdownButton, ButtonGroup, MenuItem } from 'react-bootstrap';
 
 
 class App extends React.Component {
@@ -10,9 +11,21 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="hello">
-                Hello World!
-            </div>
+            <ButtonToolbar>
+                <ButtonToolbar>
+                    <Button bsStyle="success">Success</Button>
+                    <Button bsStyle="primary" bsSize="large">Large button</Button>
+                    <Button bsSize="large">Large button</Button>
+                </ButtonToolbar>
+                <ButtonGroup>
+                    <Button>1</Button>
+                    <Button>2</Button>
+                    <DropdownButton title="Dropdown" id="bg-nested-dropdown">
+                        <MenuItem eventKey="1">Dropdown link</MenuItem>
+                        <MenuItem eventKey="2">Dropdown link</MenuItem>
+                    </DropdownButton>
+                </ButtonGroup>
+            </ButtonToolbar>
         )
     }
 }
