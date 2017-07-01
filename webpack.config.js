@@ -1,22 +1,33 @@
 const path = require('path');
-const HtmlWebpackPluin = require('html-webpack-plugin');
+const HtmlWebpackPluin = require('html-webpack-plugin'); // create HTML
+
+const HtmlWebpackPluinConfig = new HtmlWebpackPluin({
+    template: './src/index.html',
+    filename: 'index.html',
+    inject: 'body'
+});
+
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-        vendor: [ 'react', 'react-dom' ]
-    },
+    entry: './src/index.js',
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].bundle.js",
-        publicPath: "/"
+        filename: "build.js"
     },
 
     module: {
         rules: [
+            {
+                test: /\.(jsx|js)$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                options: {
+                    presets: ["es2017", "react"]
+                }
+            },
             {
                 test: /\.(scss|css)$/,
                 use: ExtractTextPlugin.extract({
@@ -28,9 +39,7 @@ module.exports = {
     },
 
     plugins: [
-        new HtmlWebpackPluin({
-            title: 'Output Management'
-        }),
+        HtmlWebpackPluinConfig,
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css')
     ],
